@@ -1,36 +1,27 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-
-import Name from './Name';
-import Counter from './Counter';
-
-const Problem = () => {
-  throw (new Error('bug'));
-  return (
-    <div>
-
-    </div>
-  )
-}
+import PhoneForm from './components/PhoneForm';
 
 class App extends Component {
   state = {
-    error: false
+    array : []
+  }
+
+  handleCreate = (data) => {
+    console.log(data);
+    this.setState((state) => {
+      state.array.push(data);
+    })
   }
   render() {
-    if (this.state.error) return (<h1>자식 컴포넌트에서 에러 발생!</h1>)
     return (
-      <Fragment>
-        <Problem></Problem>
-        <Name name="test"></Name>
-        <Counter></Counter>
-      </Fragment>
+      <div className="App">
+        <PhoneForm
+          onCreate={this.handleCreate} // onCreate는 자식에게 전달한 props 해당 props에 함수 할당
+        >
+        </PhoneForm>
+      </div>
     );
-  }
-  componentDidCatch(error, info) {
-    this.setState({
-      error: true
-    })
   }
 }
 
