@@ -6,9 +6,11 @@ export default class PhoneForm extends Component {
     phone: ''
   }
   handleChange = (e) => {
+    const {name, value} = e.target;
     this.setState({
-      [e.target.name]: e.target.value
-      //이벤트가 발생한 target의 name속성으로 조회하여 이벤트가 발생한 value의 값을 할당
+      // name= e.target.name , value= e.targe.value
+      [name]: value
+      //이벤트가 발생한 target의 name속성으로 조회하여 이벤트가 발생한 value의 state값을 변경
     })
   }
   handleSubmit = (e) => {

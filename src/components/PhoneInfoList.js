@@ -9,9 +9,15 @@ export default class PhoneInfoList extends Component {
 
   render() {
     //App.js에서 전달받은 this.props에서 data 가져오기
-    const {data, onRemove} = this.props;
+    const {data, onRemove, onUpdate} = this.props;
     const list = data.map(
-      info => (<PhoneInfo key={info.id} info={info} onRemove={onRemove}></PhoneInfo>)
+      info => (<PhoneInfo 
+        key={info.id}
+        info={info} 
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+        >
+        </PhoneInfo>)
     )
     return (
       <div>
