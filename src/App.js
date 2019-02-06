@@ -26,6 +26,13 @@ class App extends Component {
       information: information.concat({id: this.id++, ...data})
     })
   }
+
+  handleRemove = (id) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.filter(info => info.id !== id)
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -33,7 +40,7 @@ class App extends Component {
           onCreate={this.handleCreate} // onCreate는 자식에게 전달한 props 해당 props에 함수 할당
         >
         </PhoneForm>
-        <PhoneInfoList data={this.state.information}/>
+        <PhoneInfoList data={this.state.information} onRemove={this.handleRemove}/>
       </div>
     );
   }
