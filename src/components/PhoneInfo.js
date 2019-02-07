@@ -67,8 +67,22 @@ export default class PhoneInfo extends Component {
       });
     }
   }
+  
+  //최적화
+  shouldComponentUpdate(nextProps, nextState) {
+    // 현재 상태가 수정모드가 아니고, 다음 state가 수정모드가 아니고, 
+    // 현재 props.info와 다음 props.info가 같다면 리렌더링을 하지 않는다.
+    if (!this.state.editing
+      && !nextState.editing
+      && nextProps.info === this.props.info) {
+        return false;
+      }
+    // 나머지경우에는 리렌더링한다.  
+    return true;
+  }
 
   render() {
+    console.log('render phoneInfo ' + this.props.info.id);
     const style = {
       border: '1px solid black',
       padding: '8px',
